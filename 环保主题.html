@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绿色家园 - 环保从身边做起</title>
+  <style>
+    /* ================= 基础重置 ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: system-ui, "Microsoft YaHei", sans-serif;
+      background: #f4faf5;              /* 浅绿白底，清新自然 */
+      color: #1f3d2b;                   /* 深灰绿正文，浅底下看得清 */
+      overflow-x: hidden;
+    }
+
+    /* ================= 毛玻璃吸顶导航 ================= */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 6vw;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(47, 158, 68, 0.15);
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #2f9e44, #74c94d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links a {
+      color: #4b6b55;
+      text-decoration: none;
+      margin-left: 32px;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #2f9e44;
+    }
+
+    /* ================= Hero 首屏 ================= */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+    #particles {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    /* 漂浮光斑：嫩绿 + 草绿 */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.45;
+      z-index: 1;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .orb1 {
+      width: 420px;
+      height: 420px;
+      background: #a8e063;
+      top: -120px;
+      left: -120px;
+    }
+    .orb2 {
+      width: 360px;
+      height: 360px;
+      background: #56ab2f;
+      bottom: -100px;
+      right: -80px;
+      animation-delay: -4s;
+    }
+    @keyframes float {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(60px, 40px) scale(1.15); }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border: 1px solid rgba(47, 158, 68, 0.45);
+      border-radius: 999px;
+      font-size: 13px;
+      color: #2f9e44;
+      margin-bottom: 28px;
+      background: rgba(116, 201, 77, 0.12);
+    }
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      color: #17301f;
+    }
+    /* 渐变流动大标题 */
+    .gradient-text {
+      background: linear-gradient(90deg, #2f9e44, #74c94d, #d4a017, #2f9e44);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: flow 6s linear infinite;
+    }
+    @keyframes flow {
+      to { background-position: 300% 0; }
+    }
+    /* 打字机 */
+    .typewriter {
+      font-size: clamp(16px, 2.4vw, 22px);
+      color: #4b6b55;
+      min-height: 34px;
+      margin-bottom: 40px;
+    }
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: #2f9e44;
+      vertical-align: -0.15em;
+      margin-left: 3px;
+      animation: blink 0.8s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .btns {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 14px 38px;
+      border-radius: 999px;
+      font-size: 15px;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #2f9e44, #74c94d);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(47, 158, 68, 0.35);
+    }
+    .btn-ghost {
+      border: 1px solid rgba(47, 158, 68, 0.4);
+      color: #2f6b3e;
+    }
+    .btn:hover {
+      transform: translateY(-4px) scale(1.03);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 12px 32px rgba(116, 201, 77, 0.5);
+    }
+
+    /* ================= 通用区块 ================= */
+    section {
+      padding: 100px 6vw;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(28px, 4vw, 40px);
+      margin-bottom: 16px;
+      color: #17301f;
+    }
+    .section-sub {
+      text-align: center;
+      color: #4b6b55;
+      margin-bottom: 60px;
+    }
+
+    /* ================= 行动卡片 ================= */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(47, 158, 68, 0.15);
+      border-radius: 18px;
+      padding: 36px 28px;
+      transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(47, 158, 68, 0.55);
+      box-shadow: 0 16px 40px rgba(47, 158, 68, 0.2);
+    }
+    .card .icon {
+      font-size: 42px;
+      display: block;
+      margin-bottom: 18px;
+    }
+    .card h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+      color: #17301f;
+    }
+    .card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #4b6b55;
+    }
+
+    /* ================= 数据计数条 ================= */
+    .stats-band {
+      background: linear-gradient(90deg, rgba(168,224,99,.25), rgba(86,171,47,.25), rgba(212,160,23,.18));
+      border-top: 1px solid rgba(47,158,68,.2);
+      border-bottom: 1px solid rgba(47,158,68,.2);
+    }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 8vw;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .stat .num {
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 800;
+      background: linear-gradient(90deg, #2f9e44, #74c94d, #d4a017);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .stat .label {
+      margin-top: 8px;
+      color: #4b6b55;
+      font-size: 14px;
+    }
+
+    /* ================= 页脚 ================= */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #6b8a74;
+      font-size: 13px;
+      border-top: 1px solid rgba(47, 158, 68, 0.15);
+    }
+    footer .slogan {
+      color: #2f9e44;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    /* ================= 滚动淡入 ================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .cards .card:nth-child(2) { transition-delay: 0.12s; }
+    .cards .card:nth-child(3) { transition-delay: 0.24s; }
+    .cards .card:nth-child(4) { transition-delay: 0.36s; }
+
+    /* ================= 手机端适配 ================= */
+    @media (max-width: 768px) {
+      .nav-links a { margin-left: 18px; font-size: 13px; }
+      section { padding: 70px 6vw; }
+      .stats { gap: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ 导航 ============ -->
+  <nav>
+    <div class="logo">🌿 绿色家园</div>
+    <div class="nav-links">
+      <a href="#home">首页</a>
+      <a href="#actions">环保行动</a>
+      <a href="#stats">我们的成果</a>
+    </div>
+  </nav>
+
+  <!-- ============ 首屏 ============ -->
+  <section class="hero" id="home">
+    <canvas id="particles"></canvas>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="hero-content">
+      <span class="badge">🌍 环保 · 从身边的小事做起</span>
+      <h1>守护地球<br><span class="gradient-text">绿色家园</span></h1>
+      <p class="typewriter"><span id="type-text"></span><span class="cursor"></span></p>
+      <div class="btns">
+        <a href="#actions" class="btn btn-primary">参与行动</a>
+        <a href="#stats" class="btn btn-ghost">查看成果</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 环保行动 ============ -->
+  <section id="actions">
+    <h2 class="section-title reveal">四大环保行动</h2>
+    <p class="section-sub reveal">每个人的一小步，地球的一大步</p>
+
+    <div class="cards">
+      <div class="card reveal">
+        <span class="icon">🚲</span>
+        <h3>低碳出行</h3>
+        <p>短途步行或骑行，通勤选择公交地铁，少开一天车，多一片蓝天。</p>
+      </div>
+      <div class="card reveal">
+        <span class="icon">♻️</span>
+        <h3>垃圾分类</h3>
+        <p>可回收物单独投放，旧物改造循环利用，让垃圾变资源。</p>
+      </div>
+      <div class="card reveal">
+        <span class="icon">💧</span>
+        <h3>节水节电</h3>
+        <p>随手关灯拔插头，一水多用淘米浇花，节约每一度电每一滴水。</p>
+      </div>
+      <div class="card reveal">
+        <span class="icon">🌱</span>
+        <h3>植树护绿</h3>
+        <p>参与线上种树和社区绿化，认领一块绿地，种下一份希望。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 数据成果 ============ -->
+  <section class="stats-band" id="stats">
+    <div class="stats">
+      <div class="stat reveal">
+        <div class="num" data-target="12000">0</div>
+        <div class="label">棵+ 累计种下</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num" data-target="860">0</div>
+        <div class="label">吨+ 累计减碳</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num" data-target="96">0</div>
+        <div class="label">% 社区覆盖率</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 页脚 ============ -->
+  <footer>
+    <p class="slogan">🌿 绿水青山，就是金山银山 🌿</p>
+    <p>© 2026 绿色家园 · 由 AIGC 课程实验生成</p>
+  </footer>
+
+  <script>
+    /* ============ 1. 粒子背景（绿色树籽，缓缓下飘） ============ */
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.25) * 0.5,   // 略向下飘，像树籽飘落
+        r: Math.random() * 2.4 + 1
+      });
+    }
+
+    const mouse = { x: null, y: null };
+    canvas.parentElement.addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    canvas.parentElement.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(47, 158, 68, 0.55)';
+        ctx.fill();
+      }
+
+      // 粒子连线：像枝叶相连
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(34, 139, 58, ${0.3 * (1 - dist / 110)})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // 鼠标连线：像阳光洒下来
+      if (mouse.x !== null) {
+        for (const p of particles) {
+          const dist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(120, 190, 80, ${0.4 * (1 - dist / 140)})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    /* ============ 2. 打字机 ============ */
+    const lines = [
+      '少开一天车，多一片蓝天 🚲',
+      '分好一类垃圾，变废为宝 ♻️',
+      '节约一度电，点亮一份未来 💡'
+    ];
+    const typeEl = document.getElementById('type-text');
+    let lineIdx = 0, charIdx = 0, deleting = false;
+
+    function typeLoop() {
+      const current = lines[lineIdx];
+      if (!deleting) {
+        typeEl.textContent = current.slice(0, ++charIdx);
+        if (charIdx === current.length) {
+          deleting = true;
+          setTimeout(typeLoop, 1800);
+          return;
+        }
+        setTimeout(typeLoop, 90);
+      } else {
+        typeEl.textContent = current.slice(0, --charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          lineIdx = (lineIdx + 1) % lines.length;
+        }
+        setTimeout(typeLoop, 40);
+      }
+    }
+    typeLoop();
+
+    /* ============ 3. 滚动淡入 ============ */
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ============ 4. 数字计数器 ============ */
+    const statObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        statObserver.unobserve(entry.target);
+
+        const numEl = entry.target.querySelector('.num');
+        const target = +numEl.dataset.target;
+        const dur = 1600;
+        const start = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          numEl.textContent = Math.round(target * eased);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.stat').forEach(el => statObserver.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人名片</title>
+  <style>
+    /* ========== 页面基础 ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      /* 渐变背景，衬托名片 */
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      /* flex 居中三件套 */
+      justify-content: center;
+      align-items: center;
+      font-family: "Microsoft YaHei", sans-serif;
+    }
+
+    /* ========== 名片卡片 ========== */
+    .card {
+      width: 360px;
+      background: #fff;
+      border-radius: 16px;
+      /* 圆角 */
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+      /* 阴影立体感 */
+      overflow: hidden;
+      /* 让子元素圆角不溢出 */
+      transition: transform 0.3s;
+      /* 鼠标悬停动画 */
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      /* 鼠标悬停，卡片上浮 */
+    }
+
+    /* ========== 顶部头像区 ========== */
+    .card-header {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      padding: 36px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      /* 圆形头像 */
+      border: 3px solid #fff;
+      background: #ddd url("./tp.png") no-repeat center/cover;
+      margin: 0 auto 12px;
+      overflow: hidden;
+    }
+
+    .card-header h2 {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .card-header .title {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* ========== 底部信息区 ========== */
+    .card-body {
+      padding: 20px 28px 24px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dashed #eee;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      flex-shrink: 0;
+      /* 简单的图标：用 emoji 代替 */
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .info-label {
+      flex-shrink: 0;
+      width: 48px;
+      color: #999;
+      margin-right: 8px;
+    }
+
+    .info-value {
+      flex: 1;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <!-- 顶部头像区 -->
+    <div class="card-header">
+      <div class="avatar"></div>
+      <h2>翁总</h2>
+      <p class="title">产品经理 · 科技日报</p>
+    </div>
+
+    <!-- 底部信息区 -->
+    <div class="card-body">
+      <div class="info-item">
+        <span class="info-icon">📞</span>
+        <span class="info-label">电话</span>
+        <span class="info-value">138-0000-0000</span>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">✉️</span>
+        <span class="info-label">邮箱</span>
+        <span class="info-value">wengzong@example.com</span>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📍</span>
+        <span class="info-label">地址</span>
+        <span class="info-value">北京市海淀区中关村大街1号</span>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🌐</span>
+        <span class="info-label">网站</span>
+        <span class="info-value">www.wengzong.dev</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
